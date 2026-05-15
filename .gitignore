@@ -1,0 +1,33 @@
+# Local state
+*.log
+*.tmp
+*.bak
+*.swp
+*~
+
+# Environment and secrets
+.env
+.env.*
+*.pem
+*.key
+*.crt
+*.p12
+*.pfx
+
+# Downloaded binaries and packages
+*.AppImage
+*.deb
+*.rpm
+*.tar.gz
+*.zip
+*.7z
+
+# Editor and OS files
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
+
+# Docker/runtime artifacts
+.docker/
+squashfs-root/
