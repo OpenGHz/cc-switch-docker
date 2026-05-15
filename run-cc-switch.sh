@@ -18,6 +18,7 @@ fi
 
 mkdir -p \
   "$HOME/.cc-switch" \
+  "$HOME/.agents" \
   "$HOME/.claude" \
   "$HOME/.codex" \
   "$HOME/.gemini" \
@@ -60,6 +61,7 @@ exec docker run --rm "${tty_args[@]}" \
   -v "$HOST_RUNTIME_DIR:$HOST_RUNTIME_DIR:rw" \
   -v "$APPIMAGE_DIR:/downloads:ro" \
   -v "$HOME/.cc-switch:/home/appuser/.cc-switch:rw" \
+  -v "$HOME/.agents:/home/appuser/.agents:rw" \
   -v "$HOME/.claude:/home/appuser/.claude:rw" \
   -v "$HOME/.codex:/home/appuser/.codex:rw" \
   -v "$HOME/.gemini:/home/appuser/.gemini:rw" \

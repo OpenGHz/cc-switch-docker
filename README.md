@@ -11,7 +11,7 @@ This runner is useful when the host OS is too old for the official CC Switch Lin
 
 - Runs CC Switch from an Ubuntu 22.04 container with `glibc` 2.35.
 - Uses X11 and host D-Bus integration for the desktop UI and tray behavior.
-- Mounts host configuration directories for Claude Code, Codex, Gemini, and CC Switch.
+- Mounts host configuration directories for Claude Code, Codex, Gemini, CC Switch, and global agent skills.
 - Uses Docker host networking so CC Switch route/proxy mode is reachable from host CLI tools.
 - Supports desktop-login autostart through an XDG autostart entry.
 - Avoids AppImage FUSE issues by defaulting to AppImage extract mode.
@@ -61,10 +61,13 @@ The runner keeps responsibilities split:
 Mounted host directories:
 
 - `$HOME/.cc-switch`
+- `$HOME/.agents`
 - `$HOME/.claude`
 - `$HOME/.codex`
 - `$HOME/.gemini`
 - `$HOME/.config`
+
+Skills-related paths covered by these mounts include `$HOME/.agents/skills`, `$HOME/.claude/skills`, `$HOME/.cc-switch/skills`, and `$HOME/.cc-switch/skill-backups`.
 
 ## Route / Proxy Mode
 
