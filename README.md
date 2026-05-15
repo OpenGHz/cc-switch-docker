@@ -11,6 +11,7 @@ This runner is useful when the host OS is too old for the official CC Switch Lin
 
 - Runs CC Switch from an Ubuntu 22.04 container with `glibc` 2.35.
 - Uses X11 and host D-Bus integration for the desktop UI and tray behavior.
+- Includes Noto CJK fonts and a UTF-8 Chinese locale for Chinese UI rendering.
 - Mounts host configuration directories for Claude Code, Codex, Gemini, CC Switch, and global agent skills.
 - Uses Docker host networking so CC Switch route/proxy mode is reachable from host CLI tools.
 - Supports desktop-login autostart through an XDG autostart entry.
@@ -131,6 +132,8 @@ Rebuild the image after changing the Dockerfile:
 ```bash
 ./build-image.sh
 ```
+
+Rebuild is required after changing fonts, locales, or system packages in `Dockerfile`.
 
 Stop the running container:
 

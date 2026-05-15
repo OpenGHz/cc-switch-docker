@@ -9,6 +9,8 @@ RUN apt-get update \
         dbus-x11 \
         file \
         fonts-dejavu \
+        fonts-noto-cjk \
+        fontconfig \
         libayatana-appindicator3-1 \
         libfuse2 \
         libgtk-3-0 \
@@ -16,8 +18,15 @@ RUN apt-get update \
         libwebkit2gtk-4.1-0 \
         libxss1 \
         libxtst6 \
+        locales \
         xdg-utils \
+    && locale-gen zh_CN.UTF-8 en_US.UTF-8 \
+    && fc-cache -f \
     && rm -rf /var/lib/apt/lists/*
+
+ENV LANG=zh_CN.UTF-8 \
+    LANGUAGE=zh_CN:zh:en_US:en \
+    LC_ALL=zh_CN.UTF-8
 
 RUN groupadd --gid 1000 appuser \
     && useradd --uid 1000 --gid 1000 --create-home --shell /bin/bash appuser
