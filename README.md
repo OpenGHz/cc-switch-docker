@@ -22,10 +22,10 @@ This runner is useful when the host OS is too old for the official CC Switch Lin
 - X11 desktop session. Wayland may work through XWayland, but this runner was validated with X11.
 - A downloaded CC Switch Linux x86_64 AppImage.
 
-The current local default AppImage path is:
+Set `APPIMAGE_HOST` to wherever you downloaded the AppImage, for example:
 
 ```bash
-/home/ghz/下载/CC-Switch-v3.14.1-Linux-x86_64.AppImage
+export APPIMAGE_HOST="$HOME/Downloads/CC-Switch-v3.14.1-Linux-x86_64.AppImage"
 ```
 
 ## Quick Start
@@ -33,14 +33,12 @@ The current local default AppImage path is:
 Build the image:
 
 ```bash
-cd /home/ghz/Work/agent_ws/cc-switch-docker
 ./build-image.sh
 ```
 
 Launch CC Switch:
 
 ```bash
-cd /home/ghz/Work/agent_ws/cc-switch-docker
 ./run-cc-switch.sh
 ```
 
@@ -82,7 +80,7 @@ Restart CC Switch after route/proxy changes:
 
 ```bash
 docker rm -f cc-switch-gui 2>/dev/null || true
-/home/ghz/Work/agent_ws/cc-switch-docker/run-cc-switch.sh
+./run-cc-switch.sh
 ```
 
 Check listening ports on the host:
@@ -96,13 +94,13 @@ ss -ltnp | grep -E 'cc-switch|127.0.0.1|789|808|300|400|500|600|700|800|900'
 The local setup includes a desktop-login autostart entry:
 
 ```bash
-/home/ghz/.config/autostart/cc-switch-docker.desktop
+$HOME/.config/autostart/cc-switch-docker.desktop
 ```
 
 It calls:
 
 ```bash
-/home/ghz/Work/agent_ws/cc-switch-docker/autostart-cc-switch.sh
+<repo>/autostart-cc-switch.sh
 ```
 
 View autostart logs:
@@ -165,7 +163,7 @@ The autostart wrapper waits for Docker for up to about one minute. If it still f
 
 ```bash
 sudo systemctl start docker
-/home/ghz/Work/agent_ws/cc-switch-docker/run-cc-switch.sh
+./run-cc-switch.sh
 ```
 
 ### Route works in CC Switch but host CLI cannot connect
@@ -173,9 +171,9 @@ sudo systemctl start docker
 Ensure the runner is using host networking and restart the container:
 
 ```bash
-grep -- '--network=host' /home/ghz/Work/agent_ws/cc-switch-docker/run-cc-switch.sh
+grep -- '--network=host' run-cc-switch.sh
 docker rm -f cc-switch-gui 2>/dev/null || true
-/home/ghz/Work/agent_ws/cc-switch-docker/run-cc-switch.sh
+./run-cc-switch.sh
 ```
 
 ### D-Bus or AppArmor warnings
