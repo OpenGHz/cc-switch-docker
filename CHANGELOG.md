@@ -9,6 +9,7 @@ The format is based on Keep a Changelog, and this project uses semantic versioni
 ### Added
 
 - Ubuntu 22.04 Docker image definition for running the CC Switch Linux AppImage on older hosts.
+- Project-directory AppImage auto-discovery using the `CC-Switch-v*-Linux-x86_64.AppImage` filename pattern.
 - Noto CJK fonts and UTF-8 Chinese locale support for Chinese UI rendering.
 - Runtime script with X11, D-Bus, host networking, and host configuration directory mounts.
 - Host `$HOME/.agents` mount so CC Switch can manage global agent skills.

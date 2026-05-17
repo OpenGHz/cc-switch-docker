@@ -23,10 +23,16 @@ This runner is useful when the host OS is too old for the official CC Switch Lin
 - X11 desktop session. Wayland may work through XWayland, but this runner was validated with X11.
 - A downloaded CC Switch Linux x86_64 AppImage.
 
-Set `APPIMAGE_HOST` to wherever you downloaded the AppImage, for example:
+By default, place the AppImage in this project directory with the upstream release filename pattern:
 
 ```bash
-export APPIMAGE_HOST="$HOME/Downloads/CC-Switch-v3.14.1-Linux-x86_64.AppImage"
+cp /path/to/CC-Switch-v3.15.0-Linux-x86_64.AppImage ./
+```
+
+The runner scans the project directory for `CC-Switch-v*-Linux-x86_64.AppImage` and picks the newest version by filename. You can still override the path explicitly:
+
+```bash
+export APPIMAGE_HOST="$HOME/Downloads/CC-Switch-v3.15.0-Linux-x86_64.AppImage"
 ```
 
 ## Quick Start
@@ -157,7 +163,13 @@ bash -n *.sh
 
 ### AppImage not found
 
-Set `APPIMAGE_HOST` to the downloaded AppImage path:
+Put the AppImage in the project directory with a matching filename:
+
+```bash
+cp /path/to/CC-Switch-v3.15.0-Linux-x86_64.AppImage ./
+```
+
+Or set `APPIMAGE_HOST` to the downloaded AppImage path:
 
 ```bash
 APPIMAGE_HOST=/path/to/CC-Switch.AppImage ./run-cc-switch.sh

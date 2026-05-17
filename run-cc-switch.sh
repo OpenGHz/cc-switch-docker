@@ -3,7 +3,12 @@ set -euo pipefail
 
 IMAGE_NAME=${IMAGE_NAME:-cc-switch-ubuntu22:local}
 CONTAINER_NAME=${CONTAINER_NAME:-cc-switch-gui}
-APPIMAGE_HOST=${APPIMAGE_HOST:-$HOME/下载/CC-Switch-v3.14.1-Linux-x86_64.AppImage}
+SCRIPT_DIR=$(cd -- "$(dirname -- "${BASH_SOURCE[0]}")" && pwd)
+
+if [[ -z "${APPIMAGE_HOST:-}" ]]; then
+  APPIMAGE_HOST=$(find "$SCRIPT_DIR" -maxdepth 1 -type f -name 'CC-Switch-v*-Linux-x86_64.AppImage' | sort -V | tail -n 1)
+fi
+
 APPIMAGE_DIR=$(dirname "$APPIMAGE_HOST")
 APPIMAGE_FILE=$(basename "$APPIMAGE_HOST")
 HOST_UID=$(id -u)
@@ -13,6 +18,8 @@ HOST_DBUS_ADDRESS=${DBUS_SESSION_BUS_ADDRESS:-unix:path=$HOST_RUNTIME_DIR/bus}
 
 if [[ ! -f "$APPIMAGE_HOST" ]]; then
   echo "AppImage not found: $APPIMAGE_HOST" >&2
+  echo "Place a file like CC-Switch-v3.15.0-Linux-x86_64.AppImage in $SCRIPT_DIR" >&2
+  echo "or set APPIMAGE_HOST=/path/to/CC-Switch.AppImage." >&2
   exit 1
 fi
 
